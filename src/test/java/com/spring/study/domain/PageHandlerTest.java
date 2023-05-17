@@ -71,4 +71,17 @@ public class PageHandlerTest {
         assertFalse(ph.isShowNext());
     }
 
+    @Test
+    public void test4() {
+        PageHandler ph = new PageHandler(220, 10, 11);
+        System.out.println("ph = " + ph);
+        ph.print();
+
+        assertTrue(ph.isShowPrev());
+        assertTrue(ph.isShowNext());
+        assertEquals(11, ph.getBeginPage());
+        assertEquals(20, ph.getEngPage());
+
+    }
+
 }

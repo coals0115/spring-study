@@ -46,12 +46,12 @@ public class BoardDaoImplTest {
     @Test
     public void insert() {
         BoardDto boardDto1 = new BoardDto("제목", "내용", "작가1");
-        assertTrue(boardDao.insert(boardDto1) == 1);
-        assertTrue(boardDao.count() == 1);
+        assertEquals(1, boardDao.insert(boardDto1));
+        assertEquals(1, boardDao.count());
 
         BoardDto boardDto2 = new BoardDto("제목", "내용", "작가1");
-        assertTrue(boardDao.insert(boardDto2) == 1);
-        assertTrue(boardDao.count() == 2);
+        assertEquals(1, boardDao.insert(boardDto2));
+        assertEquals(2, boardDao.count());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class BoardDaoImplTest {
         boardDto1.setBno(bno);
         boardDto1.setTitle("수정");
         boardDto1.setContent("수정");
-        assertTrue(boardDao.update(boardDto1) == 1);
+        assertEquals(1, boardDao.update(boardDto1));
 
         // 3. 수정한 게시글의 id로 게시글 조회해와서 수정한 게시글의 boardDto와 같은지 검증
         BoardDto boardDto2 = boardDao.select(bno);
@@ -74,21 +74,21 @@ public class BoardDaoImplTest {
         System.out.println("boardDto1 = " + boardDto1);
         System.out.println("boardDto2 = " + boardDto2);
 
-        assertTrue(boardDto1.equals(boardDto2));
+        assertEquals(boardDto1, boardDto2);
     }
 
     @Test
     public void delete() {
         // 1. 게시글 하나 등록
         BoardDto boardDto1 = new BoardDto("제목", "내용", "작가1");
-        assertTrue(boardDao.insert(boardDto1) == 1);
+        assertEquals(1, boardDao.insert(boardDto1));
 
         // 2. 게시글 삭제
         // 2-1. 게시글 번호를 얻어와서 그걸로 삭제함
         int bno = boardDao.selectAll().get(0).getBno();
         boardDto1.setBno(bno);
         // 2-2. 삭제된 row가 1개인지 검증
-        assertTrue(boardDao.delete(boardDto1) == 1);
+        assertEquals(1, boardDao.delete(boardDto1));
 
         // 3. 게시글 번호로 select해왔을 때 등록한 boardDto와 같지 않은지 검증
         BoardDto boardDto2 = boardDao.select(bno);
@@ -96,8 +96,8 @@ public class BoardDaoImplTest {
         System.out.println("boardDto1 = " + boardDto1);
         System.out.println("boardDto2 = " + boardDto2);
 
-        assertTrue(boardDto2 == null);
-        assertTrue(!boardDto1.equals(boardDto2));
+        assertNull(boardDto2);
+        assertNotEquals(boardDto1, boardDto2);
     }
 
     @Test
@@ -113,25 +113,25 @@ public class BoardDaoImplTest {
         // 2. boardDao.count()로 게시글 개수 얻어온다.
 
         // 3. 34개와 같은지 검증
-        assertTrue(cnt == boardDao.count());
+        assertEquals(cnt, boardDao.count());
     }
 
     @Test
     public void deleteAll() {
         boardDao.deleteAll();
-        assertTrue(boardDao.selectAll().size() == 0);
+        assertEquals(0, boardDao.selectAll().size());
     }
 
     @Test
     public void selectAll() {
         // 0. 현재 존재하는 모든 게시글을 삭제한다.
-        boardDao.deleteAll();
-        assertTrue(boardDao.count() == 0);
-        assertTrue(boardDao.selectAll().size() == 0);
+//        boardDao.deleteAll();
+//        assertTrue(boardDao.count() == 0);
+//        assertTrue(boardDao.selectAll().size() == 0);
 
         // 1. 34개의 게시글을 등록한다.
         List<BoardDto> boardDtoList = new ArrayList<>();
-        int cnt = 34;
+        int cnt = 220;
         for (int i = 0; i < cnt; i++) {
             BoardDto boardDto1 = new BoardDto("제목" + i, "내용" + i, "작가" + i);
             boardDao.insert(boardDto1);
@@ -139,6 +139,6 @@ public class BoardDaoImplTest {
         }
 
         // 2. 등록된 게시글의 개수가 34개인지 검증한다.
-        assertTrue(boardDao.selectAll().size() == cnt);
+        assertEquals(boardDao.selectAll().size(), cnt);
     }
 }
