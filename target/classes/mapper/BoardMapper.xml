@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.dao.BoardMapper">
+    <!-- mybatis-config.xml에서 alias를 줘서 실제 타입 대신에 BoardDTO로 사용 가능
+        id는 select지만 실제 이름은 앞에 namespace가 붙어야 한다.(클래스 앞에 패키지 이름 붙듯이) -->
+    <select id="select" parameterType="int" resultType="BoardDto">
+        select bno,
+               title,
+               content,
+               writer,
+               view_cnt,
+               comment_cnt,
+               reg_date,
+               up_date
+        from board
+        where bno = #{bno}
+    </select>
+
+    <insert id="insert" parameterType="BoardDto">
+        insert into board (
+              title
+            , content
+            , writer
+            ) values (
+              #{title}
+            , #{content}
+            , #{writer}
+            )
+    </insert>
+
+    <update id="update" parameterType="BoardDto">
+        update board
+           set title = #{title}
+             , content = #{content}
+             , up_date = now()
+         where bno = #{bno}
+    </update>
+
+    <delete id="delete" parameterType="BoardDto">
+        delete from board where bno = #{bno} and writer = #{writer}
+    </delete>
+
+    <!-- 1. count 2. deleteAll 3. selectAll -->
+
+    <select id="count" resultType="int">
+        select count(*)
+          from board
+    </select>
+
+    <delete id="deleteAll">
+        delete from board
+    </delete>
+
+    <select id="selectAll" resultType="BoardDto">
+        select bno
+             , title
+             , content
+             , writer
+             , view_cnt
+             , comment_cnt
+             , reg_date
+             , up_date
+          from board
+        order by reg_date desc, bno desc
+    </select>
+
+    <select id="selectPage" parameterType="map" resultType="BoardDto">
+        SELECT *
+          FROM board
+        ORDER BY bno DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+</mapper>
+
