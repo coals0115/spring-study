@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 자식에 float 속성 적용되어있고 부모에 배경색 지정해줄 경우에 overflow: hidden; 걍 외우자... */
+.topnav {
+    /* 컨텐츠가 넘쳐서 layout이 넘치는 걸 방지해준다?????? */
+    overflow: hidden;
+    background-color: gray;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none; /* a태그 밑줄 제거 */
+    font-size: 17px;
+    cursor: default;
+}
+
+/* a태그에 커서 올라갈 때 */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* 활성화되어있는 a태그 */
+.topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+#loginOut {
+    float: right;
+}
