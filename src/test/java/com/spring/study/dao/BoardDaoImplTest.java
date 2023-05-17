@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 // 하나의 ac를 만들어두고 재사용하기 때문에 성능에 이점이 있음
@@ -23,7 +20,7 @@ public class BoardDaoImplTest {
     @Before
     public void beforeEach(){
         boardDao.deleteAll();
-        assertTrue(boardDao.selectAll().size() == 0);
+        assertEquals(0, boardDao.selectAll().size());
     }
 
     @Test
@@ -40,7 +37,7 @@ public class BoardDaoImplTest {
         System.out.println("boardDto = " + boardDto);
         System.out.println("boardDto1 = " + boardDto1);
 
-        assertTrue(boardDto.equals(boardDto1));
+        assertEquals(boardDto, boardDto1);
     }
 
     @Test
@@ -130,12 +127,10 @@ public class BoardDaoImplTest {
 //        assertTrue(boardDao.selectAll().size() == 0);
 
         // 1. 34개의 게시글을 등록한다.
-        List<BoardDto> boardDtoList = new ArrayList<>();
         int cnt = 220;
         for (int i = 0; i < cnt; i++) {
             BoardDto boardDto1 = new BoardDto("제목" + i, "내용" + i, "작가" + i);
             boardDao.insert(boardDto1);
-            boardDtoList.add(boardDto1);
         }
 
         // 2. 등록된 게시글의 개수가 34개인지 검증한다.
