@@ -1,5 +1,7 @@
 package com.spring.study.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,6 +10,7 @@ public class User {
     private String pwd;
     private String name;
     private String email;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
     private String sns;
     private Date regDate;

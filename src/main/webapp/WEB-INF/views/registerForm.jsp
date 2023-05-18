@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page session="false" %>
 <html>
@@ -66,7 +67,7 @@
         }
 
         .modal {
-            display: none;
+            /*display: none;*/
             position: fixed;
             z-index: 1;
             left: 0;
@@ -139,27 +140,27 @@
 <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close"
               title="Close Modal">&times;</span>
-    <form class="modal-content" action="<c:url value="/register/add"/>" onsubmit="return formCheck(this);"
-          method="post">
+    <form:form modelAttribute="user" cssClass="modal-content" onsubmit="return formCheck(this);">
         <div class="container">
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
             <hr>
+            <form:errors path="id" />
 
             <label for="id"><b>ID</b></label>
-            <input type="text" placeholder="Enter ID" name="id" id="id" required>
+            <input type="text" placeholder="Enter ID" name="id" id="id" >
 
             <label for="pwd"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
+            <input type="password" placeholder="Enter Password" name="pwd" id="pwd" >
 
             <label for="pwd-repeat"><b>Repeat pwd</b></label>
-            <input type="password" placeholder="Repeat pwd" name="pwd-repeat" id="pwd-repeat" required>
+            <input type="password" placeholder="Repeat pwd" name="pwd-repeat" id="pwd-repeat" >
 
             <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" required>
+            <input type="text" placeholder="Enter Email" name="email" id="email" >
 
             <label for="birth"><b>Birth</b></label>
-            <input type="text" placeholder="Enter birth" name="birth" id="birth" required>
+            <input type="text" placeholder="Enter birth" name="birth" id="birth" >
 
             <b>Hobby</b>
             <div class="sns-chk">
@@ -181,7 +182,7 @@
                 <button type="submit" class="signupbtn">Sign Up</button>
             </div>
         </div>
-    </form>
+    </form:form>
 </div>
 
 <script>
