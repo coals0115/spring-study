@@ -48,4 +48,9 @@ public class BoardController {
     public String cardGame() {
         return "cardGame";
     }
+
+    @GetMapping("/userInfo")
+    public String userInfoView() {
+        return "userInfo";
+    }
 }

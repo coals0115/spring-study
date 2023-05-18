@@ -48,7 +48,7 @@ function Card(number, suit) {
 
 Card.prototype.toString = function() {
     let suit = "";
-    let number = "";
+    let number;
 
     switch (this.suit) {
         case 1: suit = "◆"; break;
@@ -121,7 +121,7 @@ function initCard(cardArr) {
 
 // 두 카드의 짝이 일치하는지 체크한다.
 function checkPair(twoCards) {
-    return twoCards[0].number == twoCards[1].number && Math.abs(twoCards[0].suit - twoCards[1].suit);
+    return twoCards[0].number === twoCards[1].number && Math.abs(twoCards[0].suit - twoCards[1].suit);
 }
 
 // 남은 pair의 개수 update
@@ -188,7 +188,7 @@ function cardClick() {
 
 // 기본 정렬 - 1순위 suit 2순위 숫자
 function cardDefaultSortComparator(c, c2) {
-    if (c.suit == c2.suit) {
+    if (c.suit === c2.suit) {
         return c.number - c2.number;
     } else {
         return c.suit - c2.suit;
@@ -212,9 +212,9 @@ function showCard(cardArr) {
         c = cardArr[i];
         // 3. 위의 결과를 result 문자열에 집어넣은 뒤
         // 처음에 카드 10초간 보여주고 gameStart()에서 hide하자
-        result += `<img src="${(c.number - 1) + (c.suit - 1) * NUMBER_OF_RANKS}.png" id=${c.getId()} data-number="${c.number}" data-suit=${c.suit} data-isFront=true>`;
+        result += `<img src="${(c.number - 1) + (c.suit - 1) * NUMBER_OF_RANKS}.png" id=${c.getId()} data-number="${c.number}" data-suit=${c.suit} data-isFront=true alt="카드">`;
         // 12개가 한줄 = 만약 i가 12라면 br태그 넣어주기
-        if ((i + 1) % 13 == 0) {
+        if ((i + 1) % 13 === 0) {
             result+= `<br>`;
         }
     }
@@ -277,7 +277,7 @@ function checkFrontCardCountTwo() {
         }
     }
 
-    if (returnCards.length == 2) { // 뒤집혀있는 카드의 개수가 2개면 2장의 카드를 담은 배열반환
+    if (returnCards.length === 2) { // 뒤집혀있는 카드의 개수가 2개면 2장의 카드를 담은 배열반환
         return returnCards;
     } else { // 아니라면 false반환
         return false;
@@ -291,7 +291,7 @@ function findCard(cardImg) {
 
     for (let i = 0; i < NUMBER_OF_CARDS; i++) {
         let card = cardArr[i];
-        if (card.number == number && card.suit == suit)
+        if (card.number === number && card.suit === suit)
             return card;
     }
 }
@@ -348,9 +348,4 @@ function showHint() {
         }
         btnHint.disabled = false;
     }, 1000);
-}
-
-// from과 to 범위의 정수(int)값을 반환한다. from과 to 모두 범위에 포함된다.
-function getRand(from, to) {
-    return parseInt(((Math.random() * Math.abs(to-from) + 1))) + Math.min(from, to);
 }

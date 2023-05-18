@@ -32,6 +32,6 @@ body {
     color: white;
 }
 
-#loginOut {
+#loginOut, #register, #userInfo {
     float: right;
 }

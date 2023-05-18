@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="<c:url value='/static/css/nav.css'/>"> <!-- c:url context-root를 포함한 경로를 추가해준다. -->
+    <link rel="stylesheet" href="<c:url value='/static/css/nav.css?ver=1'/>"> <!-- c:url context-root를 포함한 경로를 추가해준다. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -14,8 +14,10 @@
 <%--    <a id="home" href="#" onclick="location.href='/?active=' + this.id"><i class="fa fa-home"></i></a>--%>
     <a id="home" href="#" onclick="location.href='/?active=' + this.id">Home</a>
     <a id="board" href="#" onclick="location.href='/board/list?active=' + this.id">게시판</a>
+    <a id="cardGame" href="#" onclick="location.href='/board/cardGame?active=' + this.id">카드 게임</a>
     <a id="loginOut" href="#" onclick="location.href='${loginOutLink}?active=' + this.id">${loginOutText}</a>
-    <a id="cardGame" href="#" onclick="location.href='/board/cardGame?active=' + this.id">카드 게임adf</a>
+    <a id="register" href="#" onclick="location.href='/register/add?active=' + this.id">회원가입</a>
+    <a id="userInfo" href="#" onclick="location.href='/board/userInfo?active=' + this.id">사용자 정보</a>
 </div>
 </body>
     <!-- 커서 -->

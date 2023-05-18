@@ -17,8 +17,8 @@
     <title>Document</title>
     <style>
         img {
-            width: 120px;
-            height: 180px;
+            width: 100px;
+            height: 150px;
             cursor: pointer;
 
             transition: transform 1s ease;

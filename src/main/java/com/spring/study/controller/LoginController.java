@@ -46,6 +46,7 @@ public class LoginController {
             // id를 session에 담는다.
             HttpSession session = request.getSession();
             session.setAttribute("id", userId);
+            session.setAttribute("user", loginCheckUser);
 
             // 1. remember가 true인지 체크한다.
             if (remember) {
@@ -61,7 +62,7 @@ public class LoginController {
         }
         // 만약 로그인이 안 되어있는 상태에서 Board 게시판에 접근하려고하면, 로그인 페이지로 redirect하고
         // 거기서 로그인에 성공했을 경우에 index.jsp가 아닌 board.jsp를 보여줘야 한다.
-        String url = toURL == null || toURL.equals("") ? "/" : toURL;
+        String url = toURL == null || toURL.equals("") ? "/board/userInfo" : toURL;
 //        String url = Objects.requireNonNullElse(toURL, "");
         return "redirect:" + url;
     }
