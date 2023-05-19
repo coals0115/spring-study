@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>BoardList</title>
 </head>
 <body>
-<jsp:include page="include/nav.jsp"></jsp:include>
+<jsp:include page="include/nav.jsp" />
 <form action="">
     <table border="1">
         <tr>
@@ -17,7 +17,8 @@
         </tr>
         <c:forEach var="board" items="${boardList}">
             <tr>
-                <td>${board.bno}</td>
+                <td><a href="<c:url value="/board/read?bno=${board.bno}&page=${p.curPage}&pageSize=${p.pageSize}"/>">${board.bno}</a></td>
+<%--                <td><a href="<c:url value="/board/read?bno=${board.bno}"/>">${board.bno}</a></td>--%>
                 <td>${board.title}</td>
                 <td>${board.writer}</td>
                 <td>${board.reg_date}</td>
